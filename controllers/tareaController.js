@@ -62,12 +62,12 @@ exports.obtenerTareas = async (req, res) => {
          console.log(proyecto);
         const existeProyecto = await Proyecto.findById(proyecto);
 
-        // if (!existeProyecto) {
-        //     console.log("aca esta la vaina")
-        //     return res.status(404).json({
-        //         msg: "Proyecto no encontrado"
-        //     });
-        // }
+         if (!existeProyecto) {
+             console.log("aca esta la vaina")
+             return res.status(404).json({
+                 msg: "Proyecto no encontrado"
+             });
+         }
 
         //Revisar si el proyecto acual pertenece al usuario autenticado
         if (existeProyecto.creador.toString() !== req.usuario.id) {
